@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class OBDetector : MonoBehaviour
 {
-    public Transform spawnPoint;
-
-    public void RespawnPlayer(GameObject player)
-    {
-        player.transform.position = spawnPoint.position;
-    }
+    [SerializeField] private LevelSettingsSO levelSettings;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            RespawnPlayer(collision.gameObject);
+            levelSettings.Events.OnPlayerHitBoundary?.Invoke(collision.transform);
         }
     }
 }

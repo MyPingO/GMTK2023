@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6da631f743e244dbd5360a1d1a5741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
+  levelSettings: {fileID: 11400000, guid: f78023495b2fed64d98df6edc7e60216, type: 2}
 --- !u!61 &8411745109004608340
 BoxCollider2D:
   m_ObjectHideFlags: 0
