@@ -15,13 +15,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
     }
 
     void Start()
     {
         // Get the Rigidbody2D
-        rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         jumpTriggerLayer = LayerMask.NameToLayer("JumpTrigger");
     }
