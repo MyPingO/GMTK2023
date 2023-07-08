@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private int jumpTriggerLayer;
 
+    private void OnEnable()
+    {
+        rb.velocity = Vector2.zero;
+    }
+
     void Start()
     {
         // Get the Rigidbody2D
