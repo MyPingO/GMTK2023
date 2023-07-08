@@ -10,7 +10,7 @@ public class ObjectSpawner : MonoBehaviour
 
     private PointBasedWaveSystem waveSystem;
     private int previousChosenIndex;
-    private float currentXMovement;
+    private float farthestXTravelled;
 
     private void Start()
     {
@@ -31,8 +31,9 @@ public class ObjectSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (!Player.isAlive) return;
         if (HasTraversedThisRegion()) return;
-        currentXMovement = transform.position.x;
+        farthestXTravelled = transform.position.x;
 
         waveSystem.UpdateSpawner();
     }
@@ -48,7 +49,7 @@ public class ObjectSpawner : MonoBehaviour
     }
 
     //A simple way to make sure we don't spawn platforms in the area we've already spawned them in.
-    private bool HasTraversedThisRegion() => transform.position.x < currentXMovement;
+    private bool HasTraversedThisRegion() => transform.position.x < farthestXTravelled;
 
     //Since we're not planning on our spawner to end, this function is not needed
     private void OnCompleted(){}

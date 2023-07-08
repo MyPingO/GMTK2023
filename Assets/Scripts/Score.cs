@@ -32,6 +32,6 @@ public class Score : MonoBehaviour
     void UpdateDiamondCount()
     {
         diamonds++;
-        diamondsText.text = "Diamonds: " + diamonds;
+        diamondsText.text = diamonds.ToString();
     }
 }

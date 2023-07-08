@@ -29,6 +29,7 @@ public class PlayerLivesManager : LevelComponent
         base.Awake();
 
         healthHandler = new CurrencyHandler(startLivesAmount, max: 9);
+        healthCounterTMP.text = healthHandler.Current.ToString();
     }
 
     private void OnEnable()
