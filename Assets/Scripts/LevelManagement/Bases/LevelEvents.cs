@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+//These are the events that are used in the level
 public struct LevelEvents
 {
     public Action OnGameWon;

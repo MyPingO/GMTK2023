@@ -1,20 +1,27 @@
 using Cinemachine;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PauseManager : LevelComponent
 {
     [SerializeField] private Page pausePage;
     [SerializeField] private PageController pageController;
     [SerializeField] private CinemachineVirtualCamera pauseCamera;
+    [SerializeField] private VolumeProfile volume;
 
     private bool isPaused;
+    private DepthOfField dofComponent;
 
     protected override void Awake()
     {
         base.Awake();
+
+        volume.TryGet(out dofComponent);
     }
 
     private void OnEnable()
@@ -37,12 +44,14 @@ public class PauseManager : LevelComponent
             level.Settings.Events.OnPaused?.Invoke();
             pageController.OpenPage(pausePage);
             Time.timeScale = 0;
+            dofComponent.focusDistance.value = 2;
         }
         else
         {
             level.Settings.Events.OnResumed?.Invoke();
             pageController.CloseTopPage();
             Time.timeScale = 1;
+            dofComponent.focusDistance.value = 10;
         }
     }
 }

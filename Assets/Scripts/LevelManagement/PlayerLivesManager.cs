@@ -1,6 +1,8 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnscriptedLogic.Currency;
 using UnscriptedLogic.MathUtils;
@@ -13,6 +15,12 @@ public class PlayerLivesManager : LevelComponent
     [Header("Respawning")]
     [SerializeField] private Transform respawnLocation;
     [SerializeField] private float respawnDelay;
+
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI healthCounterTMP;
+
+    [Header("Components")]
+    [SerializeField] private CinemachineImpulseSource impulseSource;
 
     private CurrencyHandler healthHandler;
 
@@ -35,9 +43,11 @@ public class PlayerLivesManager : LevelComponent
 
     private void OnPlayerHitBoundary(Transform player)
     {
+        impulseSource.GenerateImpulse();
         player.gameObject.SetActive(false);
 
         healthHandler.Modify(ModifyType.Subtract, 1);
+        healthCounterTMP.text = healthHandler.Current.ToString();
 
         if (healthHandler.Current <= 0)
         {
@@ -51,8 +61,10 @@ public class PlayerLivesManager : LevelComponent
     private IEnumerator RespawnPlayerWithDelay(Transform player, float delay)
     {
         yield return new WaitForSeconds(delay);
-
+        
         player.transform.position = respawnLocation.transform.position;
+
+        yield return new WaitForSeconds(delay);
 
         player.gameObject.SetActive(true);
     }
