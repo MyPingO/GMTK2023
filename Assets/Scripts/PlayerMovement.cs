@@ -1,13 +1,17 @@
 using UnityEngine;
+using UnscriptedLogic.MathUtils;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f;
-    public float jumpForce = 5f;
-    public int distanceRan;
-    private Rigidbody2D rb;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForce = 5f;
+    [Range(0, 100)] [SerializeField] private int jumpChance = 50;
+
+    [Header("Components")]
     [SerializeField] private BoxCollider2D boxCollider2D;
-    int jumpTriggerLayer;
+
+    private Rigidbody2D rb;
+    private int jumpTriggerLayer;
 
     void Start()
     {
@@ -15,7 +19,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         jumpTriggerLayer = LayerMask.NameToLayer("JumpTrigger");
-        distanceRan = 0;
     }
 
     void Update()
@@ -35,14 +38,13 @@ public class PlayerController : MonoBehaviour
         // Check if the player should jump
         if (collision.gameObject.layer == jumpTriggerLayer)
         {
-            int jumpChance = Random.Range(0, 2);
-            // 50/50 chance to jump
-            if (jumpChance == 1)  {
-                print("Jump!");
+            int rolledJumpChance = Random.Range(0, 100); ;
+            if (rolledJumpChance <= jumpChance)  {
+                Debug.Log("Jump!");
                 Jump();
             }
             else {
-                print("No jump!");
+                Debug.Log("No jump!");
             }
         }
     }
