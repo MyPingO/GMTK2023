@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,5 +17,10 @@ public class LevelController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    public IEnumerator SceneExitCleanUp_Coroutine()
+    {
+        throw new NotImplementedException();
     }
 }

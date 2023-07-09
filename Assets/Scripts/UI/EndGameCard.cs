@@ -38,7 +38,7 @@ public class EndGameCard : MonoBehaviour
 
         quitGameBtn.onClick.AddListener(() => 
         {
-            SceneController.QuitGame();
+            SceneController.instance.QuitGame();
         });
     }
 }
