@@ -42,6 +42,8 @@ public class LoadingScreen : MonoBehaviour
 
     public static LoadingScreen instance { get; private set; }
 
+    public static Action OnConfirmButtonClicked;
+
     private void Awake()
     {
         instance = this;
@@ -146,6 +148,8 @@ public class LoadingScreen : MonoBehaviour
         {
             Time.timeScale = 1f;
             ToggleScreen(false);
+
+            OnConfirmButtonClicked?.Invoke();
         });
     }
 }
