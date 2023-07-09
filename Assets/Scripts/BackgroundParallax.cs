@@ -7,12 +7,14 @@ public class BackgroundParallax : MonoBehaviour
 {
     private float length;
     private float startPosition;
-    private GameObject cam;
+    [SerializeField] private GameObject cam;
     [SerializeField] private float parallaxEffect;
 
     private void Start()
     {
-        cam = Camera.main.gameObject;
+        if (cam == null)
+            cam = Camera.main.gameObject;
+
         startPosition = transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
