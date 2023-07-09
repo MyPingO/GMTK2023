@@ -19,8 +19,6 @@ public class PauseManager : LevelComponent
         public float OffsetDistance => offsetDistance;
     }
 
-    [SerializeField] private Page pausePage;
-    [SerializeField] private PageController pageController;
     [SerializeField] private CinemachineVirtualCamera pauseCamera;
 
     [Header("Offset")]
@@ -50,14 +48,12 @@ public class PauseManager : LevelComponent
         if (isPaused)
         {
             level.Settings.Events.OnPaused?.Invoke();
-            pageController.OpenPage(pausePage);
             Time.timeScale = 0;
             StartCoroutine(LerpOutLayers());
         }
         else
         {
             level.Settings.Events.OnResumed?.Invoke();
-            pageController.CloseTopPage();
             Time.timeScale = 1;
             LerpInLayers();
         }

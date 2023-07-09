@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PageController : MonoBehaviour
+public class PageController : LevelComponent
 {
     [Tooltip("This is the page that the controller will always push on start up. Leave empty for none.")]
     [SerializeField] protected Page firstDefaultPage;
@@ -12,8 +12,10 @@ public class PageController : MonoBehaviour
 
     public Stack<Page> Pages => pages;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         pages = new Stack<Page>();
 
         if (firstDefaultPage != null)
@@ -73,5 +75,13 @@ public class PageController : MonoBehaviour
         Page topPage = pages.Peek();
         topPage.ClosePage(this);
         return topPage;
+    }
+
+    public virtual void PopAllTillRoot()
+    {
+        for (int i = 1; i < pages.Count; i++)
+        {
+            CloseTopPage();
+        }
     }
 }
