@@ -28,24 +28,23 @@ public class PlayerLivesManager : LevelComponent
     {
         base.Awake();
 
-        healthHandler = new CurrencyHandler(startLivesAmount, max: 9);
+        healthHandler = new CurrencyHandler(startLivesAmount, max: 0);
         healthCounterTMP.text = healthHandler.Current.ToString();
     }
 
     private void OnEnable()
     {
-        level.Settings.Events.OnPlayerHit += OnPlayerHitBoundary;
+        level.Settings.Events.OnPlayerHit += OnPlayerHitHazard;
     }
 
     private void OnDisable()
     {
-        level.Settings.Events.OnPlayerHit -= OnPlayerHitBoundary;
+        level.Settings.Events.OnPlayerHit -= OnPlayerHitHazard;
     }
 
-    private void OnPlayerHitBoundary(Transform player)
+    private void OnPlayerHitHazard(Transform player)
     {
         impulseSource.GenerateImpulse();
-        player.gameObject.SetActive(false);
 
         healthHandler.Modify(ModifyType.Subtract, 1);
         healthCounterTMP.text = healthHandler.Current.ToString();
@@ -61,12 +60,16 @@ public class PlayerLivesManager : LevelComponent
 
     private IEnumerator RespawnPlayerWithDelay(Transform player, float delay)
     {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+
         yield return new WaitForSeconds(delay);
         
         player.transform.position = respawnLocation.transform.position;
+        rb.simulated = false;
 
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(1);
+        
+        rb.simulated = true;
 
-        player.gameObject.SetActive(true);
     }
 }

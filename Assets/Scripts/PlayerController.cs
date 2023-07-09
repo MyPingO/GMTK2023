@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnscriptedLogic.MathUtils;
 
@@ -8,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedIncreaseFactor;
     [SerializeField] private float jumpForce;
     [Range(0, 100)][SerializeField] private int jumpChance;
-
+    [SerializeField] private bool dead = false;
     [SerializeField] bool bouncing = false;
     [SerializeField] private float bounceForce;
     [SerializeField] private float startingXPosition = 0f;
@@ -23,10 +24,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private int jumpTriggerLayer;
 
+    [SerializeField] private LevelSettingsSO levelSettings;
+
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
+        levelSettings = Resources.Load<LevelSettingsSO>("LevelDetails");
+        levelSettings.Events.OnPlayerHit += Die;
+        levelSettings.Events.OnGameLost += Disable;
+        levelSettings.Events.OnGameStart += Enable;
     }
 
     void Start()
@@ -41,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (dead) return;
 
         distanceTravelled = transform.position.x - startingXPosition;
 
@@ -58,7 +66,7 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, Vector2.right * 0.5f, Color.red);
 
         // If obstruction is detected and player is not moving horizontally, trigger a jump
-        if (!IsJumpingOrFalling() && notMoving)
+        if (!IsJumpingOrFalling() && notMoving && hit.collider != null)
         {
             Jump();
         }
@@ -90,9 +98,40 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
-    void Die() 
+    void Die(Transform player)
     {
         animator.SetBool("Dead", true);
+        dead = true;
+        speed = 0;
+        rb.velocity = Vector2.zero;
+        rb.simulated = false;
+        //wait for one second
+        StartCoroutine(DelayBeforeUpwardForce());
+    }
+
+    IEnumerator DelayBeforeUpwardForce()
+    {
+        // Wait for one second
+        yield return new WaitForSeconds(1);
+
+        rb.simulated = true;
+        // Apply upward force
+        rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+
+        //wait for another 3 seconds
+        yield return new WaitForSeconds(3);
+
+        // Reset the player state
+        ResetPlayer();
+    }
+
+    void ResetPlayer()
+    {
+        dead = false;
+        animator.SetBool("Dead", false);
+        speed = initialSpeed;
+        rb.velocity = Vector2.zero;
+        hitbox.enabled = true;
     }
 
     bool IsJumpingOrFalling()
@@ -147,5 +186,15 @@ public class PlayerController : MonoBehaviour
         {
             bouncing = false;
         }
+    }
+
+    void Disable()
+    {
+        enabled = false;
+    }
+
+    void Enable()
+    {
+        enabled = true;
     }
 }
