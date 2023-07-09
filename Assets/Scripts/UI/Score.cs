@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Score : MonoBehaviour
+public class Score : LevelComponent
 {
     public static Score instance;
 
-    void Awake()
+    public TMP_Text distanceText;
+    public TMP_Text diamondsText;
+    public float distance = 0;  //referenced in PlayerController.cs
+    public int diamonds = 0;
+
+    protected override void Awake()
     {
+        base.Awake();
+
         if (instance != null)
         {
             Debug.LogWarning("More than one instance of Score found!");
@@ -16,10 +23,7 @@ public class Score : MonoBehaviour
         }
         instance = this;
     }
-    public TMP_Text distanceText;
-    public TMP_Text diamondsText;
-    public float distance = 0;  //referenced in PlayerController.cs
-    public int diamonds = 0;
+
     void Start()
     {
         Inventory.instance.onItemPickup.AddListener(UpdateDiamondCount);

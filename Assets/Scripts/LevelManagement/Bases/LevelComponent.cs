@@ -10,6 +10,6 @@ public class LevelComponent : MonoBehaviour
 
     protected virtual void Awake()
     {
-        level = GetComponent<LevelController>();
+        level = LevelController.instance;
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2722582564963803303}
   m_Layer: 3
   m_Name: GFX
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   - {x: 1.8668051, y: 0.1263485, z: 0}
   m_ShapePathHash: -267124587
   m_Mesh: {fileID: 0}
-  m_InstanceId: 105628
+  m_InstanceId: 157302
   m_LocalBounds:
     m_Center: {x: 0.25313234, y: 0.21328852, z: 0}
     m_Extent: {x: 1.617888, y: 0.09536973, z: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2604495845393751247}
   m_Layer: 3
   m_Name: GFX
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   - {x: 3.323554, y: 0.11984229, z: 0}
   m_ShapePathHash: 1204678321
   m_Mesh: {fileID: 0}
-  m_InstanceId: 105248
+  m_InstanceId: 159410
   m_LocalBounds:
     m_Center: {x: 0.09869957, y: 0.22835034, z: 0}
     m_Extent: {x: 3.2248545, y: 0.10850805, z: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 1069202199564161972}
   m_Layer: 3
   m_Name: LongPlatform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

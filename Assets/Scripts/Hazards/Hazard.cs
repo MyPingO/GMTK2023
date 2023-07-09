@@ -6,22 +6,22 @@ public class Hazard : MonoBehaviour
 {
     [SerializeField] LevelSettingsSO levelSettings;
 
-    void OnEnable() {
+    protected virtual void OnEnable() {
         levelSettings = Resources.Load<LevelSettingsSO>("LevelDetails");
         levelSettings.Events.OnPlayerHit += OnPlayerHit;
     }
 
-    void OnDisable() {
+    protected virtual void OnDisable() {
         levelSettings.Events.OnPlayerHit -= OnPlayerHit;
     }
 
-    void OnPlayerHit(Transform player) {
+    protected virtual void OnPlayerHit(Transform player) {
         if (player == transform) {
             Debug.Log("Player hit by hazard");
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
