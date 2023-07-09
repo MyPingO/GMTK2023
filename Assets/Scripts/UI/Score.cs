@@ -18,7 +18,7 @@ public class Score : MonoBehaviour
     }
     public TMP_Text distanceText;
     public TMP_Text diamondsText;
-    public float distance = 0;  //referenced in PlayerMovement.cs
+    public float distance = 0;  //referenced in PlayerController.cs
     public int diamonds = 0;
     void Start()
     {

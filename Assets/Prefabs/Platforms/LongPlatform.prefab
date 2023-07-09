@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c76f47f717e792941b9c97541a3a1ff4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1dd937351d26ce43b222e9826a43687, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -118,18 +118,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0060253143, y: 0.26457894}
+  m_Offset: {x: 0.099411726, y: -0.0788123}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.4, y: 1}
+    oldSize: {x: 8, y: 3}
     newSize: {x: 4.4, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8095007, y: 0.109312296}
+  m_Size: {x: 6.7055097, y: 0.9507359}
   m_EdgeRadius: 0
 --- !u!114 &2604495845393751247
 MonoBehaviour:
@@ -151,16 +151,16 @@ MonoBehaviour:
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -1.9903678, y: 0.11189985, z: 0}
-  - {x: -1.9903678, y: 0.31303072, z: 0}
-  - {x: 2.0186963, y: 0.30169916, z: 0}
-  - {x: 2.0130305, y: 0.11189973, z: 0}
-  m_ShapePathHash: 135500659
+  - {x: -3.126155, y: 0.13572752, z: 0}
+  - {x: -3.126155, y: 0.3368584, z: 0}
+  - {x: 3.3206215, y: 0.31758428, z: 0}
+  - {x: 3.323554, y: 0.11984229, z: 0}
+  m_ShapePathHash: 1204678321
   m_Mesh: {fileID: 0}
-  m_InstanceId: -138822
+  m_InstanceId: 69486
   m_LocalBounds:
-    m_Center: {x: 0.014164329, y: 0.21246523, z: 0}
-    m_Extent: {x: 2.004532, y: 0.10056549, z: 0}
+    m_Center: {x: 0.09869957, y: 0.22835034, z: 0}
+    m_Extent: {x: 3.2248545, y: 0.10850805, z: 0}
 --- !u!1 &7952570085865027708
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069202199564161972}
   m_Layer: 3
-  m_Name: Platform_Blue_Wide
+  m_Name: LongPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,10 +189,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5223927398091077042}
   - {fileID: 1163258186096557929}
+  - {fileID: 5223927398091077042}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7152366220399869762
 PrefabInstance:
@@ -207,12 +207,16 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3115736010400058096, guid: 71df78ce89748b1439b958b0eb0b187d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115736010400058096, guid: 71df78ce89748b1439b958b0eb0b187d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.414
+      value: 3.109
       objectReference: {fileID: 0}
     - target: {fileID: 3115736010400058096, guid: 71df78ce89748b1439b958b0eb0b187d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.403
+      value: 0.442
       objectReference: {fileID: 0}
     - target: {fileID: 3115736010400058096, guid: 71df78ce89748b1439b958b0eb0b187d, type: 3}
       propertyPath: m_LocalPosition.z
