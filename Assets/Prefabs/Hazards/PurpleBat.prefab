@@ -119,7 +119,7 @@ Transform:
   - {fileID: 3286619923997241057}
   - {fileID: 2749714739847127813}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5003819092158200946
 Animator:
@@ -216,7 +216,7 @@ MonoBehaviour:
   - {x: 0.23167944, y: -0.2345748, z: 0}
   m_ShapePathHash: 829547173
   m_Mesh: {fileID: 0}
-  m_InstanceId: -278232
+  m_InstanceId: -246384
   m_LocalBounds:
     m_Center: {x: 0.08216882, y: -0.03199196, z: 0}
     m_Extent: {x: 0.3294766, y: 0.20258284, z: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 1
+  m_FalloffIntensity: 0.85
   m_Color: {r: 0.2498374, g: 0, b: 1, a: 1}
   m_Intensity: 20
   m_LightVolumeIntensity: 1
