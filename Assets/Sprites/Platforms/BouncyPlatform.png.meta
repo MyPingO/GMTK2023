@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fd0099d631338274cb1c81b2134da125
+guid: e94ad2ddd2731d143b30c8001693fcb9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 24
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,148 +123,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: characterspritesheet_0
+      name: BouncyPlatform_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 31
-        height: 31
+        x: 45
+        y: 2
+        width: 355
+        height: 297
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 806189a4f8081f147b3f887c0ae95909
-      internalID: 209033301
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characterspritesheet_1
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 32
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7fa808e9fa36a747ba10683e037eee2
-      internalID: 840896741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characterspritesheet_2
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 32
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 135239dbbde3b864a8b0ff20d0862520
-      internalID: 1762317096
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characterspritesheet_3
-      rect:
-        serializedVersion: 2
-        x: 93
-        y: 32
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6f8cc7a47636ea408f3ce9612d95418
-      internalID: 464602097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characterspritesheet_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b294a5e0ec26c8f4486c66d152e0ea7f
-      internalID: -523650789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characterspritesheet_5
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 1
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d214832a0c83eed4eabd27204ade6dfc
-      internalID: 460514791
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: characterspritesheet_6
-      rect:
-        serializedVersion: 2
-        x: 93
-        y: 1
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 026cd6b30e2ed6e4ea134d7fdb008d38
-      internalID: -1099277074
+      spriteID: 59dce05ac2cefe0419fa8f5d1adad07b
+      internalID: 1713905865
       vertices: []
       indices: 
       edges: []
@@ -280,13 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      characterspritesheet_0: 209033301
-      characterspritesheet_1: 840896741
-      characterspritesheet_2: 1762317096
-      characterspritesheet_3: 464602097
-      characterspritesheet_4: -523650789
-      characterspritesheet_5: 460514791
-      characterspritesheet_6: -1099277074
+      BouncyPlatform_0: 1713905865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
