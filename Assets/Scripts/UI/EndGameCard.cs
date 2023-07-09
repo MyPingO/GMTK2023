@@ -25,5 +25,20 @@ public class EndGameCard : MonoBehaviour
         distanceCounterTMP.text = Score.instance.distance.ToString("0.0");
 
         wittyTextsTMP.text = RandomLogic.FromArray(wittyResponses);
+
+        tryAgainBtn.onClick.AddListener(() =>
+        {
+            SceneController.ToGameLevel();
+        });
+
+        returnToMainScreenBtn.onClick.AddListener(() => 
+        { 
+            SceneController.ToMainScreenLevel();
+        });
+
+        quitGameBtn.onClick.AddListener(() => 
+        {
+            SceneController.QuitGame();
+        });
     }
 }
