@@ -24,7 +24,7 @@ public class GameUIPageController : PageController
 
     private void OnGameLost()
     {
-        OpenPage(gameLostPage);
+        StartCoroutine(OpenGameLostPage());
     }
 
     private void OnResumed()
@@ -35,5 +35,11 @@ public class GameUIPageController : PageController
     private void OnPaused()
     {
         OpenPage(pausePage);
+    }
+
+    private IEnumerator OpenGameLostPage()
+    {
+        yield return new WaitForSecondsRealtime(3f);
+        OpenPage(gameLostPage);
     }
 }

@@ -14,6 +14,7 @@ public class GameLostPage : Page
 
     public override void OpenPage(PageController pageController)
     {
+        gameObject.SetActive(true);
         StartCoroutine(OpenTransition());
     }
 
@@ -26,7 +27,6 @@ public class GameLostPage : Page
     private IEnumerator OpenTransition()
     {
         cardTransform.position = cardEntryStartPosition.position;
-        gameObject.SetActive(true);
 
         background.DOFade(1f, 0.5f);
 
