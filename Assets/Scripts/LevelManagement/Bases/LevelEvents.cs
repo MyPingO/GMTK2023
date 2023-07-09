@@ -13,5 +13,5 @@ public struct LevelEvents
     public Action OnPaused;
     public Action OnResumed;
 
-    public Action<Transform> OnPlayerHitBoundary;
+    public Action<Transform> OnPlayerHit;
 }

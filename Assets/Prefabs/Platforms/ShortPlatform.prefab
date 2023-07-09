@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6335205317782067777}
   - component: {fileID: 4870689190897047899}
-  - component: {fileID: 417358595557752944}
+  - component: {fileID: 3545198234585056081}
   - component: {fileID: 2722582564963803303}
   m_Layer: 3
   m_Name: GFX
@@ -86,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &417358595557752944
-BoxCollider2D:
+--- !u!70 &3545198234585056081
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,19 +118,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2502699, y: -0.023092806}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 3}
-    newSize: {x: 2.8, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.4145508, y: 1.0534738}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.23954394, y: -0.026770623}
+  m_Size: {x: 3.5598664, y: 1.0681885}
+  m_Direction: 1
 --- !u!114 &2722582564963803303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +147,7 @@ MonoBehaviour:
   - {x: 1.8668051, y: 0.1263485, z: 0}
   m_ShapePathHash: -267124587
   m_Mesh: {fileID: 0}
-  m_InstanceId: 69752
+  m_InstanceId: 105628
   m_LocalBounds:
     m_Center: {x: 0.25313234, y: 0.21328852, z: 0}
     m_Extent: {x: 1.617888, y: 0.09536973, z: 0}

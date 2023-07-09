@@ -34,12 +34,12 @@ public class PlayerLivesManager : LevelComponent
 
     private void OnEnable()
     {
-        level.Settings.Events.OnPlayerHitBoundary += OnPlayerHitBoundary;
+        level.Settings.Events.OnPlayerHit += OnPlayerHitBoundary;
     }
 
     private void OnDisable()
     {
-        level.Settings.Events.OnPlayerHitBoundary -= OnPlayerHitBoundary;
+        level.Settings.Events.OnPlayerHit -= OnPlayerHitBoundary;
     }
 
     private void OnPlayerHitBoundary(Transform player)
