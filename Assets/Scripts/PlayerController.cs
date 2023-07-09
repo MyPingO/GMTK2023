@@ -19,6 +19,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CapsuleCollider2D hitbox;
     [SerializeField] private Animator animator;
 
+    [Header("Movement Detection")]
+    [SerializeField] private float threshold = 0.1f;
+    [SerializeField] private float previousXPosition = 0f;
+    [SerializeField] private float previousYPosition = 0f;
+
+    public float movementChangeX;
+    public float movementChangeY;
+
     LayerMask platformLayer;
 
     private Rigidbody2D rb;
@@ -57,20 +65,6 @@ public class PlayerController : MonoBehaviour
 
         Score.instance.distance = distanceTravelled;
 
-        // Raycast to detect obstruction
-        Vector2 capsuleSize = new Vector2(hitbox.size.x, hitbox.size.y);
-        RaycastHit2D hit = Physics2D.CapsuleCast(transform.position, capsuleSize, hitbox.direction, 0f, Vector2.right, 0.5f, platformLayer);
-        bool notMoving = Mathf.Approximately(rb.velocity.x, 0);
-
-        // Draw the raycast for debugging
-        Debug.DrawRay(transform.position, Vector2.right * 0.5f, Color.red);
-
-        // If obstruction is detected and player is not moving horizontally, trigger a jump
-        if (!IsJumpingOrFalling() && notMoving && hit.collider != null)
-        {
-            Jump();
-        }
-
         // Make the player run
         if (!bouncing) rb.velocity = new Vector2(speed, rb.velocity.y);
 
@@ -90,6 +84,35 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Jumping", false);
             animator.SetBool("Falling", false);
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (dead) return;
+        movementChangeX = Mathf.Abs(transform.position.x - previousXPosition);
+        movementChangeY = Mathf.Abs(transform.position.y - previousYPosition);
+        // Check if the player has moved more than the threshold in X direction
+        if (movementChangeX < threshold)
+        {
+            // Raycast to detect obstruction
+            Vector2 capsuleSize = new Vector2(hitbox.size.x, hitbox.size.y);
+            RaycastHit2D hit = Physics2D.CapsuleCast(transform.position, capsuleSize, hitbox.direction, 0f, Vector2.right, 0.5f, platformLayer);
+            // Draw the raycast for debugging
+            Debug.DrawRay(transform.position, Vector2.right * 0.5f, Color.red);
+
+            // Player has not moved more than the threshold in Y direction
+            if ((movementChangeY < threshold && hit.collider != null))
+            {
+                Jump();
+            }
+            else if (movementChangeY >= threshold)
+            {
+                //slight nudge to the right to prevent getting stuck on the platform
+                rb.AddForce(Vector2.right * 0.1f, ForceMode2D.Impulse);
+            }
+        }
+        previousXPosition = transform.position.x;
+        previousYPosition = transform.position.y;
     }
 
     void Jump()
@@ -142,7 +165,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the player should jump
-        if (collision.gameObject.layer == jumpTriggerLayer && !bouncing)
+        if (collision.gameObject.layer == jumpTriggerLayer)
         {
             int rolledJumpChance = Random.Range(0, 100); ;
             if (rolledJumpChance <= jumpChance)

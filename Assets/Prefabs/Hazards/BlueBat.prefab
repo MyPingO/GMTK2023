@@ -47,7 +47,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.946
+  m_FalloffIntensity: 0.8
   m_Color: {r: 0.008274555, g: 0, b: 1, a: 1}
   m_Intensity: 22
   m_LightVolumeIntensity: 1
@@ -196,7 +196,7 @@ MonoBehaviour:
   - {x: -0.25703764, y: -0.16962409, z: 0}
   m_ShapePathHash: 773928343
   m_Mesh: {fileID: 0}
-  m_InstanceId: -224654
+  m_InstanceId: -244594
   m_LocalBounds:
     m_Center: {x: -0.053019047, y: -0.039441705, z: 0}
     m_Extent: {x: 0.41037273, y: 0.21695483, z: 0}
@@ -234,7 +234,7 @@ Transform:
   - {fileID: 3286619923997241057}
   - {fileID: 5655414033808585171}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5003819092158200946
 Animator:

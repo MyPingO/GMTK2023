@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
 
 public class PlatformBuilder : MonoBehaviour
 {
     public static PlatformBuilder instance;
-    public float rotationSpeed = 10f;  // adjust this to change how fast the platform rotates
+    public float rotationSpeed = 10f;
+    public float[] platformCooldowns;
+    private float[] platformTimestamps;
+
+    public Button[] platformButtons;
+
+    [SerializeField] GameObject[] platformPrefabs;
+    GameObject platformToBuildPrefab;
+    GameObject platformToBuildInstance;
 
     void Awake()
     {
@@ -16,26 +25,25 @@ public class PlatformBuilder : MonoBehaviour
             return;
         }
         instance = this;
-    }
 
-    GameObject platformToBuildPrefab;
-    GameObject platformToBuildInstance;
-    [SerializeField] GameObject[] platformPrefabs;
+        platformTimestamps = new float[platformCooldowns.Length];
+    }
 
     public GameObject GetPlatformToBuild()
     {
         return platformToBuildPrefab;
     }
 
-    public void SelectPlatform(GameObject platformPrefab)
+    public void SelectPlatform(int platformIndex)
     {
         if (platformToBuildInstance != null)
             Destroy(platformToBuildInstance);
 
-        platformToBuildPrefab = platformPrefab;
+        platformToBuildPrefab = platformPrefabs[platformIndex];
 
-        platformToBuildInstance = Instantiate(platformPrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-        platformToBuildInstance.GetComponentInChildren<Collider2D>().enabled = false;
+        platformToBuildInstance = Instantiate(platformPrefabs[platformIndex], Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+        platformToBuildInstance.GetComponentsInChildren<Collider2D>()[0].enabled = false;
+        platformToBuildInstance.GetComponentsInChildren<Collider2D>()[1].enabled = false;
         platformToBuildInstance.GetComponentInChildren<ShadowCaster2D>().enabled = false;
 
         // Change the opacity of the platform
@@ -43,7 +51,7 @@ public class PlatformBuilder : MonoBehaviour
         if (spriteRenderer != null)
         {
             Color color = spriteRenderer.color;
-            color.a = 0.5f;
+            color.a = 0.25f;
             spriteRenderer.color = color;
         }
 
@@ -55,65 +63,80 @@ public class PlatformBuilder : MonoBehaviour
         }
     }
 
-    public void BuildPlatform(Vector3 position)
+    public void BuildPlatform(Vector3 position, int platformIndex)
     {
-        // Instantiate the platform at the position and enable its Collider
         GameObject platformInstance = Instantiate(platformToBuildPrefab, position, platformToBuildInstance.transform.rotation);
-
         Collider2D collider = platformInstance.GetComponent<Collider2D>();
         if (collider != null)
         {
             collider.enabled = true;
         }
 
-        // Clear the platformToBuildInstance since it's now been built
         if (platformToBuildInstance != null)
         {
             Destroy(platformToBuildInstance);
             platformToBuildInstance = null;
         }
+
+        platformButtons[platformIndex].interactable = false;
+        StartCoroutine(ReEnableButtonAfterCooldown(platformIndex));
+    }
+
+    IEnumerator ReEnableButtonAfterCooldown(int platformIndex)
+    {
+        yield return new WaitForSeconds(platformCooldowns[platformIndex]);
+        platformButtons[platformIndex].interactable = true;
     }
 
     void Update()
     {
-
-        // check if player presses 1, 2, 3 or 4 to select a platform
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SelectPlatform(platformPrefabs[0]);
+            SelectPlatform(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SelectPlatform(platformPrefabs[1]);
+            SelectPlatform(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            SelectPlatform(platformPrefabs[2]);
+            SelectPlatform(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            SelectPlatform(platformPrefabs[3]);
+            SelectPlatform(3);
         }
 
         if (platformToBuildInstance != null)
         {
-            // Convert mouse position to world point
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             platformToBuildInstance.transform.position = mousePosition;
 
-            // Rotate the platform based on mouse wheel
-            float rotation = Input.GetAxis("Mouse ScrollWheel") * rotationSpeed;
-            platformToBuildInstance.transform.Rotate(0f, 0f, -rotation);
+            float rotationScroll = Input.GetAxis("Mouse ScrollWheel") * rotationSpeed;
+            platformToBuildInstance.transform.Rotate(0f, 0f, -rotationScroll);
 
-            // Check for mouse click to build the platform
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                platformToBuildInstance.transform.Rotate(0f, 0f, 45f);
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                platformToBuildInstance.transform.Rotate(0f, 0f, -45f);
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
-                // Check if the mouse is over a UI element
                 if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 {
-                    BuildPlatform(mousePosition);
+                    for (int i = 0; i < platformPrefabs.Length; i++)
+                    {
+                        if (platformToBuildPrefab == platformPrefabs[i])
+                        {
+                            BuildPlatform(mousePosition, i);
+                            break;
+                        }
+                    }
                 }
             }
         }
