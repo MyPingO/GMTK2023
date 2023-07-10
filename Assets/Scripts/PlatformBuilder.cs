@@ -12,6 +12,7 @@ public class PlatformBuilder : MonoBehaviour
     private float[] platformTimestamps;
 
     public Button[] platformButtons;
+    public Image[] cooldownImages;
 
     [SerializeField] GameObject[] platformPrefabs;
     GameObject platformToBuildPrefab;
@@ -79,31 +80,45 @@ public class PlatformBuilder : MonoBehaviour
         }
 
         platformButtons[platformIndex].interactable = false;
-        StartCoroutine(ReEnableButtonAfterCooldown(platformIndex));
+        StartCoroutine(StartCooldown(platformIndex));
     }
 
-    IEnumerator ReEnableButtonAfterCooldown(int platformIndex)
+    IEnumerator StartCooldown(int platformIndex)
     {
-        yield return new WaitForSeconds(platformCooldowns[platformIndex]);
+        float time = 0;
+        cooldownImages[platformIndex].fillAmount = 1;
+        while (time < platformCooldowns[platformIndex])
+        {
+            time += Time.deltaTime;
+            cooldownImages[platformIndex].fillAmount -= 1.0f / platformCooldowns[platformIndex] * Time.deltaTime;
+            print(cooldownImages[platformIndex].fillAmount);
+            yield return null;
+        }
+
         platformButtons[platformIndex].interactable = true;
+        cooldownImages[platformIndex].fillAmount = 0;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            if (platformButtons[0].interactable)    
             SelectPlatform(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            if (platformButtons[1].interactable)
             SelectPlatform(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            if (platformButtons[2].interactable)
             SelectPlatform(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            if (platformButtons[3].interactable)
             SelectPlatform(3);
         }
 
