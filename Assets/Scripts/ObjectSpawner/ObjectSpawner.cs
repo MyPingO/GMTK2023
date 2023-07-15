@@ -7,10 +7,11 @@ public class ObjectSpawner : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private SpawnerSettings spawnerSettings;
     [SerializeField] private Transform[] spawnLocations;
+    [SerializeField] private float spawnThreshold = 10f; // The distance to the end of the platforms at which the system will start spawning new ones
 
     private PointBasedWaveSystem waveSystem;
     private int previousChosenIndex;
-    private float farthestXTravelled;
+    private float endOfPlatformsX;
 
     private void Start()
     {
@@ -18,24 +19,28 @@ public class ObjectSpawner : MonoBehaviour
         waveSystem.BeginSpawner();
         waveSystem.debugSpawner = true;
         previousChosenIndex = 1;
+        endOfPlatformsX = transform.position.x;
     }
 
     private void OnSpawn(GameObject objectToSpawn)
     {
-        //For now, we'll set this as only adjacent. We can change this to make gaps in the generator for the actual player to put platforms in between.
         int spawnLocationIndex = SelectRandomAdjacentLocation();
-
         GameObject spawnable = Instantiate(objectToSpawn);
         spawnable.transform.position = spawnLocations[spawnLocationIndex].transform.position;
+
+        // update the end of the platforms
+        endOfPlatformsX = Mathf.Max(endOfPlatformsX, spawnable.transform.position.x);
     }
 
     private void Update()
     {
         if (!Player.isAlive) return;
-        if (HasTraversedThisRegion()) return;
-        farthestXTravelled = transform.position.x;
 
-        waveSystem.UpdateSpawner();
+        // if the player is close enough to the end of the platforms, spawn new ones
+        if (Player.instance.transform.position.x > endOfPlatformsX - spawnThreshold)
+        {
+            waveSystem.UpdateSpawner();
+        }
     }
 
     private int SelectRandomAdjacentLocation()
@@ -48,9 +53,5 @@ public class ObjectSpawner : MonoBehaviour
         return spawnLocationIndex;
     }
 
-    //A simple way to make sure we don't spawn platforms in the area we've already spawned them in.
-    private bool HasTraversedThisRegion() => transform.position.x < farthestXTravelled;
-
-    //Since we're not planning on our spawner to end, this function is not needed
-    private void OnCompleted(){}
+    private void OnCompleted() {}
 }

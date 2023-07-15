@@ -305,4 +305,10 @@ public class SceneController : MonoBehaviour
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         SceneManager.LoadSceneAsync(1);
     }
+
+    public static void RestartMainGame()
+    {
+        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+    }
 }
