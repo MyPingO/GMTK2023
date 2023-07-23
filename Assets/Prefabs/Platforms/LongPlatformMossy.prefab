@@ -174,16 +174,16 @@ MonoBehaviour:
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -3.240434, y: 0.69250154, z: 0}
+  - {x: -3.240434, y: 0.069462724, z: 0}
   - {x: -3.2437027, y: 0.8477156, z: 0}
   - {x: 3.2185092, y: 0.8570607, z: 0}
-  - {x: 3.2140517, y: 0.6930388, z: 0}
-  m_ShapePathHash: 1608881589
+  - {x: 3.2140517, y: 0.07, z: 0}
+  m_ShapePathHash: -1106050243
   m_Mesh: {fileID: 0}
-  m_InstanceId: 105496
+  m_InstanceId: 32502
   m_LocalBounds:
-    m_Center: {x: -0.012596846, y: 0.7747811, z: 0}
-    m_Extent: {x: 3.2311058, y: 0.08227956, z: 0}
+    m_Center: {x: -0.012596846, y: 0.4632617, z: 0}
+    m_Extent: {x: 3.2311058, y: 0.39379898, z: 0}
 --- !u!1001 &7055398711328827964
 PrefabInstance:
   m_ObjectHideFlags: 0
