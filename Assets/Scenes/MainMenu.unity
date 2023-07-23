@@ -855,7 +855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -21.779}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 351.8, y: -222.1}
+  m_AnchoredPosition: {x: 333.5, y: -290}
   m_SizeDelta: {x: 291.357, y: 64.218}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &471973386
@@ -1100,7 +1100,6 @@ GameObject:
   m_Component:
   - component: {fileID: 580231749}
   - component: {fileID: 580231751}
-  - component: {fileID: 580231750}
   m_Layer: 0
   m_Name: LevelManagers
   m_TagString: Untagged
@@ -1123,18 +1122,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &580231750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580231748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a455b7c1905f4684d9dc8974c1388da9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &580231751
 MonoBehaviour:
   m_ObjectHideFlags: 0
